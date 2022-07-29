@@ -1,11 +1,17 @@
-import { ApiUriBuilder } from "./api-uri"
+import { getApiUriBuilder } from "./api-uri"
 import { MessagePayload } from "./payload"
 import { FilteredResult , parseSearchResult } from "./response"
 
-export async function search(title: string): Promise<MessagePayload | FilteredResult[]> {
-  const uri = ApiUriBuilder
-    .addQueryParameter("title", title)
+export type SearchType = "artist" | "release_title"
+
+export async function discogsSearch(search: string, type: SearchType = "artist"): Promise<MessagePayload | FilteredResult[]> {
+  console.log(type)
+  
+  const uri = getApiUriBuilder()
+    .addQueryParameter(type, search)
     .build()
+
+  console.log(uri)
 
   try {
     const res = fetch(uri)

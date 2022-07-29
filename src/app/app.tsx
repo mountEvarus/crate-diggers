@@ -1,16 +1,21 @@
 import * as React from "react"
 
-import { search } from "@src/api"
+import { SearchType, discogsSearch } from "@src/api"
 
 export function App(): JSX.Element {
-  async function handleClick(): Promise<void> {
-    const res = await search("lion king")
+
+  async function handleClick(search: string, type?: SearchType): Promise<void> {
+    const res = await discogsSearch(search, type)
 
     console.log(res)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
-  return <button onClick={handleClick}>API test</button>
+  return <div>
+    {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+    <button onClick={() => handleClick("kanye west")}>API Artist test</button>
+    {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+    <button onClick={() => handleClick("lion king", "release_title")}>API Title test</button>
+  </div>
 }
 
 // accounts via mongodb
