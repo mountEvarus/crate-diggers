@@ -1,5 +1,13 @@
 import * as React from "react"
 
+import { Box } from "@mui/system"
+
+import { SearchBar } from "./search-bar"
+
 export function Home(): JSX.Element {
-  return <p>I am the home page</p>
+  return (
+    <Box>
+      <SearchBar />
+    </Box>
+  )
 }
