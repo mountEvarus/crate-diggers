@@ -1,6 +1,7 @@
+import { MessagePayload , MusicResult } from "@src/types"
+
 import { getApiUriBuilder } from "./api-uri"
-import { MessagePayload } from "./payload"
-import { FilteredResult , parseSearchResult } from "./response"
+import { parseSearchResult } from "./parse-result"
 
 export const enum SearchType {
   Artist = "artist",
@@ -12,7 +13,7 @@ export type SearchFields = {
   type: SearchType
 }
 
-export async function discogsSearch(searchFields: SearchFields): Promise<MessagePayload | FilteredResult[]> {
+export async function discogsSearch(searchFields: SearchFields): Promise<MessagePayload | MusicResult[]> {
   const { search, type } = searchFields
   
   const uri = getApiUriBuilder()
@@ -27,7 +28,6 @@ export async function discogsSearch(searchFields: SearchFields): Promise<Message
     return await res
   } catch (err) {
     const error = err as Error
-    console.log(error)
 
     return { message: error.message }
   }

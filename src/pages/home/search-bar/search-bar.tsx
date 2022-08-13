@@ -5,9 +5,10 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import { SearchFields, SearchType  } from "@src/api"
 
 import { searchBarSchema } from "./schema"
-import { handleSearchBarSubmit } from "./submit"
+import { useHandleSearchBarSubmit } from "./submit"
 
 export function SearchBar(): JSX.Element {
+  const { handleSubmit } = useHandleSearchBarSubmit()
   
   const initialValues: SearchFields = {
     search: "",
@@ -17,7 +18,7 @@ export function SearchBar(): JSX.Element {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSearchBarSubmit}
+      onSubmit={handleSubmit}
       validationSchema={searchBarSchema}
     >
       {({ isSubmitting }) => {
