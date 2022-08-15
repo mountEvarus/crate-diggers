@@ -18,11 +18,10 @@ export function useStyles(): SearchBarStyles {
       backgroundColor: "lightgreen",
       borderRadius: "8px",
       display: "flex",
-      height: "75px",
       gap: "16px",
       justifyContent: "flex-start",
       m: "16px 12px",
-      p: "16px",
+      p: "20px 16px",
       "input, select": {
         borderRadius: "4px",
         p: "8px",
