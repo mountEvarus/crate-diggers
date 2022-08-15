@@ -5,7 +5,7 @@ import { SxProps } from "@mui/system"
 
 type RecordCardStyles = {
   formatTextStyles: SxProps<Theme>
-  iconStyles: React.CSSProperties
+  iconStyles: SxProps<Theme>
   imageStyles: React.CSSProperties
   outerBoxStyles: SxProps<Theme>
   titleTextStyles: SxProps<Theme>
@@ -21,6 +21,9 @@ export function useStyles(): RecordCardStyles {
     iconStyles: {
       color: "red",
       width: "75px",
+      "&:hover": {
+        cursor: "pointer",
+      },
     },
     imageStyles: {
       height: "75px",
