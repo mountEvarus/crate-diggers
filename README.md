@@ -2,6 +2,7 @@
 
 ## TODO
 
-- Landing Info primer
-- Local storage favouriting system
+- Favourites page
+- media queries for landing info
 - Pagination
+- Smooth transitions
