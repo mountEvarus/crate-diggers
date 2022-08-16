@@ -12,7 +12,7 @@ export function Main(): JSX.Element {
   const styles = useStyles()
 
   return (
-    <Box sx={styles}>
+    <Box component="main" sx={styles}>
       <Routes>
         <Route path={Path.Home} element={<Home />} />
         <Route path={Path.Collection} element={<Collection />} />

@@ -12,6 +12,9 @@ export function useStyles(): SearchBarStyles {
       borderRadius: "4px",
       fontSize: "16px",
       p: "8px 16px",
+      "&:hover": {
+        cursor: "pointer",
+      },
     },
     outerBoxStyles: {
       alignItems: "center",
