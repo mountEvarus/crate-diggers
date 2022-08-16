@@ -8,12 +8,14 @@ import { Box, Typography } from "@mui/material"
 import { cloneDeep, findIndex, set } from "lodash"
 
 import { useMusicResultContext } from "@src/providers"
+import { MusicCollectionRepository } from "@src/repository"
 import { MusicResult } from "@src/types"
 
 import { useStyles } from "./record-card.styles"
 
 export function RecordCard(props: MusicResult): JSX.Element {
-  const { artistAndTitle, cover, isCollected, format, year } = props
+  const { isCollected, ...rest } = props
+  const { artistAndTitle, cover, format, year } = rest
   const { 
     formatTextStyles,
     iconStyles,
@@ -30,6 +32,12 @@ export function RecordCard(props: MusicResult): JSX.Element {
     : faHeartOutline
 
   function handleClick(): void {
+    if (isCollected) {
+      MusicCollectionRepository.remove(rest)
+    } else {
+      MusicCollectionRepository.add(rest)
+    }
+
     const newValue = !isCollected
     const newResult = cloneDeep(musicResult)
     const index = findIndex(newResult, (res) => JSON.stringify(res) === JSON.stringify(props))

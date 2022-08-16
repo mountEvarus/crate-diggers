@@ -1,3 +1,4 @@
+import { MusicCollectionRepository } from "@src/repository"
 import { instanceOfMessagePayload } from "@src/typeguards"
 import { MessagePayload, MusicResult, SearchResultPayload } from "@src/types"
 
@@ -10,6 +11,7 @@ export function parseSearchResult(response: Record<string, unknown>): MessagePay
       .results
       .map(result => {
         const { cover_image, format, master_id, title, year } = result
+        const isCollected = MusicCollectionRepository.isRecordCollected(master_id)
 
         return {
           artistAndTitle: title,
@@ -17,9 +19,8 @@ export function parseSearchResult(response: Record<string, unknown>): MessagePay
           format: format,
           id: master_id,
           year: year,
-          isCollected: false,
+          isCollected,
         }
       })
-
   }
 }

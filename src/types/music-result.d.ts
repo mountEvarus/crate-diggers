@@ -4,5 +4,5 @@ export type MusicResult = {
   format: string[]
   id: number
   year: string
-  isCollected: false
+  isCollected: boolean
 }
