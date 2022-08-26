@@ -14,7 +14,7 @@ import { LandingInfo } from "./landing-info"
 import { useStyles } from "./record-table.styles"
 
 export function RecordTable(): JSX.Element {
-  const styles = useStyles()
+  const { outerBoxStyles, paginationStyles } = useStyles()
   const { musicResult, setMusicResult } = useMusicResultContext()
   const [musicResultPage, setMusicResultPage] = React.useState(musicResult)
   const [page, setPage] = React.useState(1)
@@ -52,12 +52,12 @@ export function RecordTable(): JSX.Element {
   const areMusicResultsPresent = musicResult.length > 0
   
   return (
-    <Box sx={styles}>
+    <Box sx={outerBoxStyles}>
       {areMusicResultsPresent ? <TableHeading /> : <LandingInfo />}
       {musicResultPage.map((result, index) => {
         return <RecordCard key={index} handleCardClick={handleCardClick} result={result} />
       })}
-      {areMusicResultsPresent && <Pagination count={TableHelpers.getPageCount(musicResult)} onChange={handlePageChange} />}
+      {areMusicResultsPresent && <Pagination count={TableHelpers.getPageCount(musicResult)} onChange={handlePageChange} sx={paginationStyles} />}
     </Box>
   )
 }
