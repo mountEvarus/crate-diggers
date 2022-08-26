@@ -1,16 +1,18 @@
 import { unionBy } from "lodash"
 
-import { CollectedMusic, MusicResult } from "@src/types"
+import { MusicResult } from "@src/types"
 
 class MusicCollectionRepo {
   private LS_Key = "musicCollection"
 
-  public add(music: CollectedMusic): void {
+  public add(music: MusicResult): void {
+    const musicToAdd = { ...music, isCollected: true }
+    
     const currentCollectedMusic = this.getAll()
 
     const updatedMusicResults = unionBy(
       currentCollectedMusic,
-      [music],
+      [musicToAdd],
       JSON.stringify,
     )
 
@@ -31,7 +33,7 @@ class MusicCollectionRepo {
     return matchingMusicLength > 0
   }
 
-  public remove(music: CollectedMusic): void {
+  public remove(music: MusicResult): void {
     const currentCollectedMusic = this.getAll()
 
     const updatedMusicResults = currentCollectedMusic

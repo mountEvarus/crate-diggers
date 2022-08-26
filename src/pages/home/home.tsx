@@ -1,8 +1,7 @@
 import * as React from "react"
 
 import { Box } from "@mui/material"
-
-import { Spacer } from "@src/common"
+import { Spacer } from "@src/common/spacer"
 
 import { useStyles } from "./home.styles"
 import { RecordTable } from "./record-table"
@@ -13,7 +12,6 @@ export function Home(): JSX.Element {
   return (
     <Box sx={styles}>
       <SearchBar />
-      <Spacer />
       <RecordTable />
       <Spacer />
     </Box>
