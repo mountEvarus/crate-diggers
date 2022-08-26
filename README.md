@@ -2,7 +2,7 @@
 
 ## TODO
 
-- Pagination
+- Pagination for favourites page
 - Favourites page message on no favourites
 - Smooth transitions
 - Media queries
