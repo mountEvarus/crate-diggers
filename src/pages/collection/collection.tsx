@@ -1,19 +1,20 @@
 import * as React from "react"
 
-import { Box } from "@mui/material"
-import { RecordCard } from "@src/common/record-card"
-import { TableHeading } from "@src/common/table-heading"
+import { RecordTable } from "@src/common/record-table"
+import { cloneDeep, findIndex, set } from "lodash"
 
+import { useMusicResultContext } from "@src/providers"
 import { MusicCollectionRepository } from "@src/repository"
 import { MusicResult } from "@src/types"
 
-import { useStyles } from "./collection.styles"
-
 export function Collection(): JSX.Element {
-  const styles = useStyles()
 
   const initialState = MusicCollectionRepository.getAll()
   const [musicResult, setMusicResult] = React.useState(initialState)
+
+  const { musicResult: musicSearchResult, setMusicResult: setMusicSearchResult } = useMusicResultContext()
+
+  const noResultsElement = <p>!!!</p>
 
   function handleCardClick(music: MusicResult): void {
 
@@ -25,14 +26,20 @@ export function Collection(): JSX.Element {
 
     const newResult = MusicCollectionRepository.getAll()
     setMusicResult(newResult)
+
+    const newValue = !music.isCollected
+    const newSearchResult = cloneDeep(musicSearchResult)
+    const index = findIndex(newSearchResult, (res) => JSON.stringify(res) === JSON.stringify(music))
+
+    set(newSearchResult, `[${index}].isCollected`, newValue)
+    setMusicSearchResult(newSearchResult)
   }
 
   return (
-    <Box sx={styles}>
-      <TableHeading />
-      {musicResult.map((result, index) => {
-        return <RecordCard key={index} handleCardClick={handleCardClick} result={result} />
-      })}
-    </Box>
+    <RecordTable 
+      handleCardClick={handleCardClick}
+      musicResult={musicResult}
+      noResultsElement={noResultsElement}
+    />
   )
 }
