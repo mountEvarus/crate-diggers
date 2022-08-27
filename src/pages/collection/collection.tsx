@@ -7,6 +7,8 @@ import { useMusicResultContext } from "@src/providers"
 import { MusicCollectionRepository } from "@src/repository"
 import { MusicResult } from "@src/types"
 
+import { NoFavourites } from "./no-favourites"
+
 export function Collection(): JSX.Element {
 
   const initialState = MusicCollectionRepository.getAll()
@@ -14,7 +16,7 @@ export function Collection(): JSX.Element {
 
   const { musicResult: musicSearchResult, setMusicResult: setMusicSearchResult } = useMusicResultContext()
 
-  const noResultsElement = <p>!!!</p>
+  const noResultsElement = <NoFavourites />
 
   function handleCardClick(music: MusicResult): void {
 
