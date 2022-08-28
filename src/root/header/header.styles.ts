@@ -1,25 +1,31 @@
-import * as React from "react"
-
 import { Theme } from "@mui/material"
 import { SxProps } from "@mui/system"
 
 type HeaderStyles = {
-  iconStyles: React.CSSProperties
+  headingStyles: SxProps<Theme>
+  navStyles: SxProps<Theme>
   outerBoxStyles: SxProps<Theme>
   typographyStyles: SxProps<Theme>
 }
 
 export function useStyles(): HeaderStyles {
   return {
-    iconStyles: {
+    headingStyles: {
+      alignItems: "center",
+      display: "flex",
       fontSize: "32px",
+      gap: "16px",
+    },
+    navStyles: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-evenly",
     },
     outerBoxStyles: {
-      alignItems: "center",
       backgroundColor: "lightcoral",
       borderRadius: "0 0 16px 16px",
-      display: "flex",
-      gap: "16px",
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
       p: "16px",
       width: "100%",
     },

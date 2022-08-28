@@ -3,4 +3,3 @@
 ## TODO
 
 - Media queries
-- Style header links
