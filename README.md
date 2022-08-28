@@ -1,5 +1,5 @@
-# Crate Diggers
+# Crate Diggers v1.0.0
 
-## TODO
+## Description
 
-- README
+Crate diggers is a website which uses the (Discogs API)[https://www.discogs.com/developers] to search for record either by artist or title. Using local storage, users can save their favourite record and see their collection.
