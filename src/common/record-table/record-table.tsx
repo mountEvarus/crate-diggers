@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { Box, Pagination } from "@mui/material"
+import { useScreenSizeQuery } from "@src/common/use-screen-size-query"
 
 import { MusicResult } from "@src/types"
 
@@ -19,6 +20,7 @@ export function RecordTable(props: Props): JSX.Element {
 
   const { handleCardClick, musicResult, noResultsElement } = props
 
+  const query = useScreenSizeQuery("sm", "min-width")
   const [musicResultPage, setMusicResultPage] = React.useState(musicResult)
   const [page, setPage] = React.useState(1)
 
@@ -35,18 +37,22 @@ export function RecordTable(props: Props): JSX.Element {
     const filteredResult = musicResult.slice(startingIndex, endingIndex)
     setMusicResultPage(filteredResult)
 
-    if (filteredResult.length === 0 && page < 1) {
+    if (filteredResult.length === 0 && page > 1) {
       setPage((currentPage) => currentPage - 1)
     }
 
+  }, [musicResult, page, setPage])
+
+  React.useEffect(() => {
     window.scrollTo(0, 0)
-  }, [musicResult, page])
+  }, [page])
 
   const areMusicResultsPresent = musicResult.length > 0
 
   return (
     <Box sx={outerBoxStyles}>
-      {areMusicResultsPresent ? <TableHeading /> : noResultsElement}
+      {areMusicResultsPresent && query && <TableHeading />}
+      {!areMusicResultsPresent && noResultsElement}
       {musicResultPage.map((result, index) => {
         return <RecordCard key={index} handleCardClick={handleCardClick} result={result} />
       })}

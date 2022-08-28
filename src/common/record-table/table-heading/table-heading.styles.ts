@@ -35,7 +35,7 @@ export function useStyles(): TableHeadingStyles {
     },
     recordHeadingStyles: {
       flex: 1,
-      minWidth: "300px",
+      minWidth: "250px",
       textAlign: "center",
     },
     releasedHeadingStyles: {

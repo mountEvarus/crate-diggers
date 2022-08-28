@@ -2,6 +2,7 @@ import * as React from "react"
 
 import { Theme } from "@mui/material"
 import { SxProps } from "@mui/system"
+import { useScreenSizeQuery } from "@src/common/use-screen-size-query"
 
 type RecordCardStyles = {
   formatTextStyles: SxProps<Theme>
@@ -13,8 +14,12 @@ type RecordCardStyles = {
 }
 
 export function useStyles(): RecordCardStyles {
+
+  const query = useScreenSizeQuery("sm", "min-width")
+
   return {
     formatTextStyles: {
+      fontSize: "14px",
       textAlign: "center",
       width: "200px",
     },
@@ -36,14 +41,17 @@ export function useStyles(): RecordCardStyles {
       borderRadius: "8px",
       display: "flex",
       gap: "24px",
+      flexDirection: query ? "row" : "column",
       justifyContent: "space-between",
       p: "16px",
     },
     titleTextStyles: {
       flex: 1, 
-      minWidth: "300px",
+      fontSize: "14px",
+      minWidth: query ? "250px" : "auto",
     },
     yearTextStyles: {
+      fontSize: "14px",
       textAlign: "center",
       width: "75px",
     },

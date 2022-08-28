@@ -11,7 +11,7 @@ import { useStyles } from "./search-bar.styles"
 import { useHandleSearchBarSubmit } from "./submit"
 
 export function SearchBar(): JSX.Element {
-  const { buttonStyles, outerBoxStyles } = useStyles()
+  const { buttonStyles, fieldBoxStyles, outerBoxStyles } = useStyles()
   const { handleSubmit } = useHandleSearchBarSubmit()
   
   const initialValues: SearchFields = {
@@ -27,24 +27,30 @@ export function SearchBar(): JSX.Element {
     >
       {({ errors, isSubmitting }) => {
         return (
-          <Box component={Form} sx={outerBoxStyles}>
-            <label htmlFor="search">Search:</label>
-            <Field name="search" />
-            <label htmlFor="type">Search Type:</label>
-            <Field as="select" name="type">
-              <option value={SearchType.Title}>Title</option>
-              <option value={SearchType.Artist}>Artist</option>
-            </Field>
-            <Box 
-              component="button"
-              disabled={isSubmitting}
-              sx={buttonStyles}
-              type="submit">
+          <>
+            <Box component={Form} sx={outerBoxStyles}>
+              <Box sx={fieldBoxStyles}>
+                <Box component="label" htmlFor="search">Search:</Box>
+                <Field name="search" />
+              </Box>
+              <Box sx={fieldBoxStyles}>
+                <Box component="label" htmlFor="type">Search Type:</Box>
+                <Field as="select" name="type">
+                  <Box component="option" value={SearchType.Title}>Title</Box>
+                  <Box component="option" value={SearchType.Artist}>Artist</Box>
+                </Field>
+              </Box>
+              <Box 
+                component="button"
+                disabled={isSubmitting}
+                sx={buttonStyles}
+                type="submit">
               Go!
+              </Box>
+              <ErrorMessage error={errors.search} />
+              <ErrorMessage error={errors.type} />
             </Box>
-            <ErrorMessage error={errors.search} />
-            <ErrorMessage error={errors.type} />
-          </Box>
+          </>
         )
       }}
     </Formik>

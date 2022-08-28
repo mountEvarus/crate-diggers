@@ -20,7 +20,7 @@ export function TableHeading(): JSX.Element {
       <Typography sx={recordHeadingStyles}>Record</Typography>
       <Typography sx={releasedHeadingStyles}>Released</Typography>
       <Typography sx={formatsHeadingStyles}>Formats</Typography>
-      <Typography sx={favouriteHeadingStyles}>Favourite</Typography>
+      <Typography sx={favouriteHeadingStyles}>Save</Typography>
     </Box>
   )
 }
