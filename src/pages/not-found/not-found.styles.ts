@@ -3,12 +3,13 @@ import { SxProps } from "@mui/system"
 import { MarginalHeight } from "@src/common/MarginalHeight"
 
 export function useStyles(): SxProps<Theme> {
-
+  
   return {
-    m: "0 auto",
-    maxWidth: "1920px",
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    gap: "24px",
     minHeight: `calc(100vh - ${MarginalHeight.header} - ${MarginalHeight.footer})`,
-    pb: "56px",
-    width: "100%",
+    justifyContent: "center",
   }
 }

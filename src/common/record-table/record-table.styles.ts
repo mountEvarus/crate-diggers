@@ -13,7 +13,6 @@ export function useStyles(): RecordTableStyles {
       flexDirection: "column",
       gap: "8px",
       maxWidth: "1920px",
-      m: "12px",
     },
     paginationStyles: {
       m: "auto",
