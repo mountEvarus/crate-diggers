@@ -1,4 +1,4 @@
-# Crate Diggers v1.0.0
+# Crate Diggers v1.1.0
 
 ## Description
 
