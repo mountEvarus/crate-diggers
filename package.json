@@ -10,7 +10,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "webpack --config webpack.js",
+    "build": "webpack --config webpack.js  && echo 'crate-diggers.hynes.app' > ./dist/CNAME",
     "deploy": "yarn build && gh-pages -d dist",
     "develop": "webpack serve --config webpack.js",
     "lint": "eslint src/**/*.{ts,tsx}"
