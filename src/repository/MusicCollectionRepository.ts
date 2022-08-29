@@ -37,7 +37,7 @@ class MusicCollectionRepo {
     const currentCollectedMusic = this.getAll()
 
     const updatedMusicResults = currentCollectedMusic
-      .filter((musicResult => JSON.stringify(musicResult) !== JSON.stringify(music)))
+      .filter((musicResult => musicResult.matches(music).not()))
 
 
     localStorage.setItem(this.LS_Key, JSON.stringify(updatedMusicResults))

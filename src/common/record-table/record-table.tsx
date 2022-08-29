@@ -52,7 +52,7 @@ export function RecordTable(props: Props): JSX.Element {
   return (
     <Box sx={outerBoxStyles}>
       {areMusicResultsPresent && query && <TableHeading />}
-      {!areMusicResultsPresent && noResultsElement}
+      {areMusicResultsPresent.not() && noResultsElement}
       {musicResultPage.map((result, index) => {
         return <RecordCard key={index} handleCardClick={handleCardClick} result={result} />
       })}

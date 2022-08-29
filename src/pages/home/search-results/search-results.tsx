@@ -23,9 +23,9 @@ export function SearchResults(): JSX.Element {
       MusicCollectionRepository.add(music)
     }
 
-    const newValue = !music.isCollected
+    const newValue = music.isCollected.not()
     const newResult = cloneDeep(musicResult)
-    const index = findIndex(newResult, (res) => JSON.stringify(res) === JSON.stringify(music))
+    const index = findIndex(newResult, (res) => res.matches(music))
 
     set(newResult, `[${index}].isCollected`, newValue)
     setMusicResult(newResult)

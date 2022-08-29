@@ -5,17 +5,18 @@
   "homepage": "https://mountEvarus.io/crate-diggers",
   "packageManager": "yarn@3.2.1",
   "private": true,
-  "version": "1.1.1",
+  "version": "1.1.2",
   "engines": {
     "node": ">=16"
   },
   "scripts": {
     "build": "webpack --config webpack.js",
-    "deploy": "gh-pages -d dist",
+    "deploy": "yarn build && gh-pages -d dist",
     "develop": "webpack serve --config webpack.js",
     "lint": "eslint src/**/*.{ts,tsx}"
   },
   "devDependencies": {
+    "@evan-abc/typescript-helpers": "^0.3.3",
     "@svgr/webpack": "^6.2.1",
     "@types/lodash": "^4",
     "@types/node": "^17.0.31",
