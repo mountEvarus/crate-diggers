@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import { Box } from "@mui/material"
 import { RecordTable } from "@src/common/record-table"
 import { cloneDeep, findIndex, set } from "lodash"
 
@@ -7,9 +8,12 @@ import { useMusicResultContext } from "@src/providers"
 import { MusicCollectionRepository } from "@src/repository"
 import { MusicResult } from "@src/types"
 
+import { useStyles } from "./collection.styles"
 import { NoFavourites } from "./no-favourites"
 
 export function Collection(): JSX.Element {
+
+  const styles = useStyles()
 
   const initialState = MusicCollectionRepository.getAll()
   const [musicResult, setMusicResult] = React.useState(initialState)
@@ -38,10 +42,12 @@ export function Collection(): JSX.Element {
   }
 
   return (
-    <RecordTable 
-      handleCardClick={handleCardClick}
-      musicResult={musicResult}
-      noResultsElement={noResultsElement}
-    />
+    <Box sx={styles}>
+      <RecordTable 
+        handleCardClick={handleCardClick}
+        musicResult={musicResult}
+        noResultsElement={noResultsElement}
+      />
+    </Box>
   )
 }
